@@ -1,0 +1,59 @@
+.daily-forecast-container {
+    .daily-temp {
+        font-size: 25px;
+    }
+
+    .accordion-header {
+        .accordion-button {
+            padding: 8px 10px
+        }
+    }
+
+    .date {
+        font-size: 20px;
+        margin-top: 10px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .weather-card, .weather-accordion-item {
+        color: #004466;
+    }
+
+    .weather-card {
+        border: 2px solid #004466;
+    }
+
+    @media (max-width: 767px) {
+        .daily-forecast-row {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (min-width: 768px) {
+        .daily-forecast-row {
+            grid-template-columns: repeat(8, 1fr);
+        }
+    }
+
+    @media (min-width: 992px) {
+        .daily-forecast-row {
+            grid-template-columns: repeat(14, 1fr);
+        }
+    }
+
+    .daily-forecast-row {
+        .daily-forecast-col {
+            grid-column: span 2;
+        }
+    }
+
+    .weather-icon {
+        svg {
+            min-height: 40px;
+            min-width: 40px;
+        }
+    }
+}

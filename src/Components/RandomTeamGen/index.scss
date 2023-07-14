@@ -1,0 +1,179 @@
+.random-team-gen-wrapper {
+    .btn-disabled-true {
+        filter: brightness(70%);
+    }
+
+    .entry-label-wrapper, .group-label-wrapper {
+        min-width: 50%;
+
+        .entry-label-col {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .entry-label, .group-label {
+            font-size: 20px;
+            display: inline-block;
+            font-weight: 500;
+        }
+
+        .group-label {
+            width: 60%;
+        }
+
+        .entry-input, .group-input {
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .entry-input {
+            width: 100%;
+        }
+        .group-input{
+            width: 60%;
+            text-align: center;
+        }
+        .group-input-wrapper {
+            display: inline-flex;
+            width: 40%;
+        }
+        .group-counter-button {
+            width: 30%;
+            aspect-ratio: auto 1/1;
+
+            background-color: #4CAF50;
+            color: white;
+            padding: 9px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 25px;
+            font-weight: 500;
+        }
+
+        .area-button, .entry-submit {
+            width: 100%;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            font-size: 20px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .entry-submit {
+            background-color: #4CAF50;
+        }
+        .area-button {
+            background-color: #3c49ff;
+            transition: filter .5s;
+
+            &.active-true {
+                filter: brightness(70%);
+            }
+        }
+    }
+
+    .gen-teams-button {
+        min-width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .entries-row-container {
+        
+        .entry-card {
+            height: 5rem;
+
+            .container-fluid, .row, .col {
+                height: 100%;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .entry-text {
+                font-size: 22px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .remove-entry-button {
+                border-radius: 5px;
+                border: none;
+                background-color: transparent;
+                color: var(--accent2);
+                font-size: 24px;
+                font-weight: 700;
+                padding-inline: 10px;
+                transition: all .2s;
+                
+                &:hover {
+                    transform: scale(1.1);
+                    background-color: var(--secondary);
+                    border: 1px solid black;
+                }
+            }
+        }
+    }
+
+    .teams-title {
+        font-size: 40px;
+        font-weight: 700;
+    }
+
+    .team-card {
+        height: 100%;
+
+        .team-entry {
+            font-size: 20px;
+            color: white;
+            font-weight: 600;
+        }
+    }
+
+    .bg-prim {
+        border: 3px solid black;
+        background-color: dodgerblue;
+    }
+    .bg-sec {
+        border: 3px solid black;
+        background-color: firebrick;
+    }
+    .bg-accent1 {
+        border: 3px solid black;
+        background-color: olive;
+    }
+    .bg-accent2 {
+        border: 3px solid black;
+        background-color: orange;
+    }
+
+    .border-prim {
+        border: 4px solid dodgerblue;
+    }
+    .border-sec {
+        border: 4px solid firebrick;
+    }
+    .border-accent1 {
+        border: 4px solid olive;
+    }
+    .border-accent2 {
+        border: 4px solid orange;
+    }
+}

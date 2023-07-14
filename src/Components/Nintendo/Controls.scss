@@ -1,0 +1,94 @@
+.nintendo-controls-bar {
+    max-width: 100%;
+
+    .nintendo-options-bar {
+        justify-content: space-between;
+
+        .nintendo-option-circle {
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            
+            &:hover {
+                transform: scale(1.05);
+                outline: 2px solid #262626; // inner
+                border: 2px solid white; // outer
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.nintendo-modal-container {
+    background-color: #262626;
+    border-radius: 3px;
+    animation: fluxIn .6s;
+    font-family: 'Nintendo Switch UI', sans-serif;
+    z-index: 5;
+
+    .n-modal-top {
+        color: white;
+        font-weight: 400;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #606369;
+        font-size: 22px;
+    }
+
+    .n-modal-button-container {
+        padding: 0;
+        display: flex;
+        
+        .n-modal-button {
+            border: 3px;
+            background: #262626;
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            color: #5fcbae;
+            font-weight: 500 !important;
+            
+            &:hover {
+                border: 3px solid #4293b8;
+                background: #161616;
+            }
+        }
+    }
+}
+
+@keyframes fluxIn {
+    0% {
+        transform: scale(0.6);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.theme-light-true {
+    .nintendo-option-circle {
+        background-color: white;
+        
+        &:hover {
+            border: 2px solid white; // inner
+            outline: 2px solid #262626; // outer
+        }
+    }
+}
+
+.theme-light-false {
+    .nintendo-option-circle {
+        background-color: #454f54;
+        
+        &:hover {
+            border: 2px solid #262626; // inner
+            outline: 2px solid white; // outer
+        }
+    }
+}

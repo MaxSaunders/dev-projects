@@ -1,0 +1,38 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    .navbar-brand {
+        transition: all .5s;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        // WIP - doesnt look good in phone mode
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            // justify-content: center;
+            justify-content: center;
+
+            .navbar-img-container {
+                width: 8%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-width: 40px;
+
+                .navbar-logo {
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,81 @@
+.dashboard-container {
+    font-family: 'Nunito', sans-serif;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    filter: blur(0);
+
+    &.dashboard-loading-true {
+        filter: blur(5px);
+        transition: filter;
+        // animate
+    }
+
+    .dashboard-greeting {
+        display: grid;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+
+        .greeting-text {
+            color: white;
+            display: flex;
+            justify-content: flex-start;
+
+            .chevron {
+                font-size: 22px;
+            }
+            
+            .greeting-date {
+                font-size: 16px;
+                display: flex;
+                align-items: center;
+                color: gray;
+            }
+
+            .premium-container {
+                background-color: #171717;
+                border-radius: 30px;
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                
+                .premium {
+                    font-size: 17px;
+                }
+            }
+        }
+    }
+    
+    .dashboard-row {
+        
+    }
+    
+    .dashboard-content {
+        // border: 10px transparent;
+        padding: 15px 10px;
+        // background-color: blue;
+
+        .row {
+            // padding-bottom: 20px;
+
+            .card {
+                min-height: 100%;
+                background-color: #171717;
+                color: white
+            }
+        }
+
+        .content-row {
+            padding-bottom: 20px;
+        }
+
+        .test {
+            background-color: #171717 !important;
+            // color: #171717 !important;
+            // margin-top: 100px;
+            padding-block: 100px; //TODO Remove this < ----------------------------- just for visual for time being
+            // height: 100%;
+        }
+    }
+}
+    

@@ -1,0 +1,30 @@
+.simple-bar-container {
+    border-top: 3px solid lightgray;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden;
+    max-height: 350px;
+
+    .hourly-forecast-container {
+        max-height: 350px;
+
+        .background-dark {
+            background-color: lightgray;
+        }
+
+        .hourly-header, .hourly-data {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .hourly-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                max-width: 35px;
+                max-height: 35px;
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+.nintendo-game-carousel-container {
+    .nintendo-game-carousel {
+        display: inline-flex;
+        align-items: center;
+        height: 100%;
+        max-width: 100%;
+        min-width: 50vw;
+        
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-x: scroll;
+        
+        z-index: 1;
+        
+        &.col {
+            padding-inline: 0;
+        }
+        
+        &.carousel-main {
+            padding-inline: 100px;
+        }
+        
+        .carousel-right, .carousel-left {
+        position: absolute;
+        min-width: 200px;
+        min-height: 310px;
+        z-index: -1;
+        }
+        .carousel-left {
+            left: 0;
+        }    
+        .carousel-right {
+            right: 0;
+        }
+        
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .nintendo-game-art {
+            margin: 5px;
+            outline: 2px solid transparent;
+            border: 4px solid transparent;
+            cursor: pointer;
+            
+            img {
+                height: 300px;
+                width: 300px;
+            }
+            
+            &:hover, &.selected {
+                outline: 2px solid white;
+                border: 4px solid #262626;
+            }
+        }
+    }
+}

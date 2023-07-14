@@ -1,0 +1,84 @@
+.current-forecast-container {
+    .current-weather-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            min-height: 80px;
+            min-width: 80px;
+        }
+    }
+    
+    @media (max-width: 767px) {
+        .current-left {
+            border-right: 0;
+        }
+        .current-header {
+            font-size: 11px;
+        }
+        .current-data {
+            font-size: 15px;
+        }
+        .current-temp {
+            font-size: 40px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .current-left {
+            border-right: 3px solid #004466;
+        }
+        .current-header {
+            font-size: 30px;
+        }
+        .current-data {
+            font-size: 25px;
+        }
+        .current-temp {
+            font-size: 50px;
+        }
+
+    }
+
+    @media (min-width: 992px) {
+        .current-header {
+            font-size: 35px;
+        }
+        .current-data {
+            font-size: 35px;
+        }
+        .current-temp {
+            font-size: 60px;
+        }
+    }
+
+    .current-left {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .current-right {
+        margin-top: 10px;
+        
+        .current-section {
+            display: grid;
+        }
+        
+        .current-header {
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+        }
+        
+        .current-data {
+            &:hover {
+                text-decoration: underline 2px;
+                text-underline-offset: 6px;
+            }
+        }
+    }
+}

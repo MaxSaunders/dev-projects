@@ -10,9 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.4.0",
+    "bootstrap": "^5.3.0",
+    "chance": "^1.1.11",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.63.6"
+    "react-gauge-chart": "^0.4.1",
+    "react-icons": "^4.10.1",
+    "react-router-dom": "^5.2.0",
+    "react-widgets": "^5.8.4",
+    "sass": "^1.63.6",
+    "simplebar-react": "^3.2.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
