@@ -7,13 +7,6 @@ const bsColors = [
     'sec',
     'accent1',
     'accent2'
-    // 'dark',
-    // 'primary',
-    // 'secondary',
-    // 'success',
-    // 'danger',
-    // 'warning',
-    // 'info'
 ]
 
 const shuffleEntries = (entries = [], numberOfGroups = 2) => {

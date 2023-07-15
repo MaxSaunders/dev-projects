@@ -45,6 +45,8 @@
         .group-counter-button {
             width: 30%;
             aspect-ratio: auto 1/1;
+            display: flex;
+            align-items: center;
 
             background-color: #4CAF50;
             color: white;

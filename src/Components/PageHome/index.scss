@@ -29,10 +29,14 @@
 
                 .page-home-card-icon-wrapper {
                     height: 70%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
                     .page-home-card-icon {
                         color: var(--accent2);
                         padding: 13px;
+                        min-height: 7rem;
                     }
                 }
                 
