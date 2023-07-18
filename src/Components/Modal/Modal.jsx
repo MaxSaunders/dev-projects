@@ -30,13 +30,14 @@ CustomModal.propTypes = {
     modalClassName: PropTypes.string,
 }
 
-const Modal = ({ header, body, footer, headerClassName, bodyClassName, footerClassName, modalClassName, onClose }) =>
+const Modal = ({ header, body, footer, headerClassName, bodyClassName, footerClassName, modalClassName = '', onClose, centered = true }) =>
     <RBSModal
         onHide={onClose}
-        centered
+        centered={centered}
         show
         style={{ display: 'block' }}
         className={modalClassName}
+        dialogClassName={`${modalClassName}-dialog`}
     >
         {header &&
             <ModalHeader className={headerClassName}>
@@ -64,6 +65,7 @@ Modal.propTypes = {
     footerClassName: PropTypes.string,
     modalClassName: PropTypes.string,
     onClose: PropTypes.func,
+    centered: PropTypes.bool,
 }
 
 export default Modal

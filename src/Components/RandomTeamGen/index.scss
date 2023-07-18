@@ -1,4 +1,29 @@
+.team-gen-error-message-dialog {
+    margin-top: 15%;
+
+    .team-gen-error-message {
+        color: red;
+        font-size: 1.8rem;
+        font-weight: 600;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
 .random-team-gen-wrapper {
+
+    .team-gen-btn {
+        border-radius: 4px;
+        transition: all .3s ease;
+
+        &:not(.btn-disabled-true) {
+            &:hover {
+                filter: brightness(80%);
+            }
+        }
+    }
+
     .btn-disabled-true {
         filter: brightness(70%);
     }

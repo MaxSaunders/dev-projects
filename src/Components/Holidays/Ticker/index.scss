@@ -1,0 +1,103 @@
+.interval-ticker-wrapper {
+
+    .ticker-label {
+        border-radius: 0 0 20px 20px;
+        border-top: 0;
+        border-bottom: 3px solid black;
+        border-right: 3px solid black;
+        border-left: 3px solid black;
+        background-color: white;
+
+        font-weight: 700;
+        font-size: 25px;
+        padding-block: 16px 6px;
+
+        top: -10px;
+        position: relative;
+        z-index: 0;
+
+        transition: all 1s;
+        animation: drop-in linear 1s;
+
+        @keyframes drop-in {
+            0% {
+                top: -50px;
+            }
+            100% {
+                top: -10px;
+            }
+        }
+
+        // .loading-text {
+            
+        // }
+    }
+    
+    .interval-ticker {
+        z-index: 1;
+        position: relative;
+        display: grid;
+
+        .ticker-section-label {
+            @media (max-width: 767px) {
+                width:100%;
+            }
+            
+            @media (min-width: 768px) {
+                font-size: 20px;
+            }
+        }
+
+        .ticker-section {
+            font-family: 'digital-clock-font', monospace;
+            display: inline-grid;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            border-top: 4px solid black;
+            border-bottom: 4px solid black;
+            border-right: 4px solid black;
+            background-color: white;
+            
+            &:first-child {
+                border-left: 4px solid black;
+                border-radius: 15px 0 0 15px;
+            }
+
+            &:last-child {
+                border-radius: 0 15px 15px 0;
+            }
+            
+            @media (max-width: 460px) {
+                padding: 7px;
+                font-size: 30px;
+            }
+
+            @media (min-width: 461px) {
+                padding: 12px;
+                font-size: 35px;
+            }
+            
+            @media (min-width: 768px) {
+                padding: 20px;
+                font-size: 40px;
+            }
+
+            @media (min-width: 988px) {
+                padding: 30px;
+                font-size: 60px;
+            }
+
+            .ticker-section-label {
+                @media (max-width: 767px) {
+                    font-size: 14px;
+                }
+                
+                @media (min-width: 768px) {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}

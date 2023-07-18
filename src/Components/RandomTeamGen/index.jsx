@@ -1,5 +1,7 @@
 import { Card, Col, Container, Row } from 'react-bootstrap'
 import { useCallback, useState } from 'react'
+
+import Modal from '../Modal/Modal'
 import './index.scss'
 
 const bsColors = [
@@ -38,20 +40,27 @@ const shuffleEntries = (entries = [], numberOfGroups = 2) => {
 
 const RandomTeamGen = () => {
     const [input, setInput] = useState('')
+    const [error, setError] = useState('')
     const [entries, setEntries] = useState([])
     const [numGroups, setNumGroups] = useState(2)
     const [teams, setTeams] = useState([])
     const [showTextArea, setShowTextArea] = useState(false)
 
     const addEntry = useCallback(() => {
-        if (input && !entries.includes(input)) {
-            if (showTextArea) {
-                setEntries(i => [...i, ...input.trim(' ').split(',')])
-                setInput('')
-            } else {
-                setEntries(i => [...i, input])
-                setInput('')
-            }
+        if (!input) {
+            setError('Invalid Entry')
+            return
+        }
+        if (entries.includes(input)) {
+            setError('Entry Already Exists')
+            return
+        }
+        if (showTextArea) {
+            setEntries(i => [...i, ...input.trim(' ').split(',')])
+            setInput('')
+        } else {
+            setEntries(i => [...i, input])
+            setInput('')
         }
     }, [entries, input, showTextArea])
 
@@ -80,6 +89,13 @@ const RandomTeamGen = () => {
     return (
         <div>
             <Container className='random-team-gen-wrapper'>
+                {error &&
+                    <Modal modalClassName='team-gen-error-message' centered={false} onClose={() => setError('')} body={
+                        <div className='team-gen-error-message'>
+                            {error}
+                        </div>
+                    } />
+                }
                 <Row className='my-5'>
                     <Col xs={12} md={6} className='entry-label-wrapper'>
                         <Row>
@@ -112,12 +128,12 @@ const RandomTeamGen = () => {
                         </Row>
                         <Row>
                             <Col xs={6}>
-                                <button className={`area-button active-${showTextArea}`} onClick={() => setShowTextArea(i => !i)}>
+                                <button className={`area-button team-gen-btn active-${showTextArea}`} onClick={() => setShowTextArea(i => !i)}>
                                     Show Area Box
                                 </button>
                             </Col>
                             <Col xs={6}>
-                                <button disabled={!input} className={`entry-submit btn-disabled-${!input}`} onClick={() => addEntry()}>
+                                <button disabled={!input} className={`entry-submit team-gen-btn btn-disabled-${!input}`} onClick={() => addEntry()}>
                                     ADD Entry
                                 </button>
                             </Col>
@@ -130,7 +146,7 @@ const RandomTeamGen = () => {
                                     Number of Groups:
                                 </span>
                                 <span className='group-input-wrapper'>
-                                    <button onClick={() => setNumGroups(i => i - 1)} disabled={numGroups <= 2} className={`group-counter-button btn-disabled-${numGroups <= 2}`}>
+                                    <button onClick={() => setNumGroups(i => i - 1)} disabled={numGroups <= 2} className={`group-counter-button team-gen-btn btn-disabled-${numGroups <= 2}`}>
                                         {`-`}
                                     </button>
                                     <input
@@ -138,7 +154,7 @@ const RandomTeamGen = () => {
                                         className='group-input'
                                         onChange={e => setNumGroups(+e.target.value)}
                                     />
-                                    <button onClick={() => setNumGroups(i => i + 1)} disabled={numGroups >= entries.length} className={`group-counter-button btn-disabled-${numGroups >= entries.length}`}>
+                                    <button onClick={() => setNumGroups(i => i + 1)} disabled={numGroups >= entries.length} className={`group-counter-button team-gen-btn btn-disabled-${numGroups >= entries.length}`}>
                                         {`+`}
                                     </button>
                                 </span>
@@ -149,7 +165,7 @@ const RandomTeamGen = () => {
                 <Row>
                     <Col xs={0} md={3} />
                     <Col xs={12} md={6}>
-                        <button onClick={generateTeams} className='gen-teams-button'>Generate Teams</button>
+                        <button onClick={generateTeams} className='team-gen-btn gen-teams-button'>Generate Teams</button>
                     </Col>
                     <Col xs={0} md={3} />
                 </Row>

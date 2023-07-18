@@ -174,7 +174,7 @@ const Table = () => {
                     <PageButtons {...tableState} setPage={setPage} totalResults={resultsLength} />
                 </span>
                 <span className='control-span text-end mx-2'>
-                    <AiFillSetting size='22px' onClick={() => setShowSettings(true)} />
+                    <AiFillSetting className='settings-button' size='22px' onClick={() => setShowSettings(true)} />
                 </span>
             </div>
         </Container>

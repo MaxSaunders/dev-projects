@@ -1,0 +1,236 @@
+.holiday-calendar-container {
+    .holiday-section {
+        @media (max-width: 767px) {
+            height: 90vh;
+        }
+        
+        @media (min-width: 768px) {
+            height: 40vh;
+        }
+
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 3px solid black;
+
+        .holiday-title {
+            font-weight: 700;
+            transition: font-size 1s linear;
+
+            @media (max-width: 767px) {
+                font-size: 75px;
+            }
+
+            @media (min-width: 768px) {
+                font-size: 95px;
+            }
+        }
+
+        .ticker-section {
+            
+            .ticker-section-label {
+                font-weight: 700;
+            }
+        }
+    }
+
+    .calendar-settings {
+        background-color: var(--primary);
+        position: sticky;
+        z-index: 3;
+        top: 0;
+
+        &.buttons {
+            @media (max-width: 567px) {
+                display: none;
+            }
+        }
+
+        &.dropdown {
+            @media (min-width: 568px) {
+                display: none;
+            }
+        }
+
+        .settings-dropdown-label {
+            width: 80%;
+            
+            .settings-dropdown {
+                width: 100%;
+                padding: 7px;
+                margin: 10px 0;
+                font-size: 20px;
+            }
+        }
+
+        .display-btn-group {
+            display: grid;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            
+            @media (max-width: 767px) {
+                grid-template-columns: repeat(2, 50%);
+            }
+            
+            @media (min-width: 768px) {
+                grid-template-columns: repeat(5, 20%);
+            }
+
+            @media (min-width: 988px) {
+                grid-template-columns: repeat(5, 18%);
+            }
+
+            @media (min-width: 1322px) {
+                grid-template-columns: repeat(5, 15%);
+            }
+
+            .display-btn {
+                @media (max-width: 767px) {
+                    margin: 2px 5px;
+                    padding: 5px 20px;
+                }
+                
+                @media (min-width: 768px) {
+                    margin: 8px 10px;
+                    padding: 9px 20px;
+                }
+
+                text-align: center;
+                justify-content: center;
+                border-radius: 4px;
+                display: flex;
+                align-items: center;
+                
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                font-size: 25px;
+                font-weight: 500;
+
+                &.btn-disabled-true {
+                    filter: brightness(50%);
+                    cursor: default;
+                }
+            }
+        }
+    }
+
+    &.holiday-valentinesDay {
+        background-image:
+            url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st1%7Bopacity:0.3%3Bfill:%23FFFFFF%3B%7D.st3%7Bopacity:0.1%3Bfill:%23FFFFFF%3B%7D%3C/style%3E%3Ccircle class='st1' cx='5' cy='8' r='1'/%3E%3Ccircle class='st1' cx='38' cy='3' r='1'/%3E%3Ccircle class='st1' cx='12' cy='4' r='1'/%3E%3Ccircle class='st1' cx='16' cy='16' r='1'/%3E%3Ccircle class='st1' cx='47' cy='46' r='1'/%3E%3Ccircle class='st1' cx='32' cy='10' r='1'/%3E%3Ccircle class='st1' cx='3' cy='46' r='1'/%3E%3Ccircle class='st1' cx='45' cy='13' r='1'/%3E%3Ccircle class='st1' cx='10' cy='28' r='1'/%3E%3Ccircle class='st1' cx='22' cy='35' r='1'/%3E%3Ccircle class='st1' cx='3' cy='21' r='1'/%3E%3Ccircle class='st1' cx='26' cy='20' r='1'/%3E%3Ccircle class='st1' cx='30' cy='45' r='1'/%3E%3Ccircle class='st1' cx='15' cy='45' r='1'/%3E%3Ccircle class='st1' cx='34' cy='36' r='1'/%3E%3Ccircle class='st1' cx='41' cy='32' r='1'/%3E%3C/svg%3E"),
+            url('./assets/v-day.jpg');
+    }
+    
+    &.holiday-halloween {
+        background-color: darkorange;
+        background-image: url('./assets/halloween.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: orange;
+
+        .holiday-title {
+            text-shadow:
+                -2px 3px 0 black,
+                2px 3px 0 black,
+                2px -3px 0 black,
+                -2px -3px 0 black;
+        }
+
+        .ticker-section {
+            text-shadow:
+                -1px 1px 0 black,
+                1px 1px 0 black,
+                1px -1px 0 black,
+                -1px -1px 0 black;
+            
+            .ticker-section-label {
+                color: black;
+                text-shadow: none;
+            }
+        }
+    }
+    
+    &.holiday-thanksgiving {
+        background-color: #ec8001;
+        
+        background-image: url('./assets/thanks-border.jpg');
+        animation: thanksBackground 50s linear infinite;
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: rgb(104, 53, 16);
+
+        .holiday-title {
+            text-shadow:
+                -2px 3px 0 #FFAC1C,
+                2px 3px 0 #FFAC1C,
+                2px -3px 0 #FFAC1C,
+                -2px -3px 0 #FFAC1C;
+        }
+
+        .ticker-section {
+            text-shadow:
+                -1px 1px 0 #FFAC1C,
+                1px 1px 0 #FFAC1C,
+                1px -1px 0 #FFAC1C,
+                -1px -1px 0 #FFAC1C;
+            
+            .ticker-section-label {
+                color: #FFAC1C;
+                text-shadow: none;
+            }
+        }
+
+        @keyframes thanksBackground {
+            0% {
+                background-position: top;
+            }
+            50% {
+                background-position: bottom;
+            }
+            100% {
+                background-position: top;
+            }
+        }
+    }
+
+    
+    &.holiday-christmas {
+        background-color: #051735;
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st1%7Bopacity:0.3%3Bfill:%23FFFFFF%3B%7D.st3%7Bopacity:0.1%3Bfill:%23FFFFFF%3B%7D%3C/style%3E%3Ccircle class='st1' cx='5' cy='8' r='1'/%3E%3Ccircle class='st1' cx='38' cy='3' r='1'/%3E%3Ccircle class='st1' cx='12' cy='4' r='1'/%3E%3Ccircle class='st1' cx='16' cy='16' r='1'/%3E%3Ccircle class='st1' cx='47' cy='46' r='1'/%3E%3Ccircle class='st1' cx='32' cy='10' r='1'/%3E%3Ccircle class='st1' cx='3' cy='46' r='1'/%3E%3Ccircle class='st1' cx='45' cy='13' r='1'/%3E%3Ccircle class='st1' cx='10' cy='28' r='1'/%3E%3Ccircle class='st1' cx='22' cy='35' r='1'/%3E%3Ccircle class='st1' cx='3' cy='21' r='1'/%3E%3Ccircle class='st1' cx='26' cy='20' r='1'/%3E%3Ccircle class='st1' cx='30' cy='45' r='1'/%3E%3Ccircle class='st1' cx='15' cy='45' r='1'/%3E%3Ccircle class='st1' cx='34' cy='36' r='1'/%3E%3Ccircle class='st1' cx='41' cy='32' r='1'/%3E%3C/svg%3E");
+        background-position: 0px 0px;
+        animation: animatedBackground 10s linear infinite;
+        
+        .content {
+            background-image: url("data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 50 50' style='enable-background:new 0 0 50 50%3B' xml:space='preserve'%3E%3Cstyle type='text/css'%3E.st1%7Bopacity:0.7%3Bfill:%23FFFFFF%3B%7D.st3%7Bopacity:0.1%3Bfill:%23FFFFFF%3B%7D%3C/style%3E%3Ccircle class='st3' cx='4' cy='14' r='1'/%3E%3Ccircle class='st3' cx='43' cy='3' r='1'/%3E%3Ccircle class='st3' cx='31' cy='30' r='2'/%3E%3Ccircle class='st3' cx='19' cy='23' r='1'/%3E%3Ccircle class='st3' cx='37' cy='22' r='1'/%3E%3Ccircle class='st3' cx='43' cy='16' r='1'/%3E%3Ccircle class='st3' cx='8' cy='45' r='1'/%3E%3Ccircle class='st3' cx='29' cy='39' r='1'/%3E%3Ccircle class='st3' cx='13' cy='37' r='1'/%3E%3Ccircle class='st3' cx='47' cy='32' r='1'/%3E%3Ccircle class='st3' cx='15' cy='4' r='2'/%3E%3Ccircle class='st3' cx='9' cy='27' r='1'/%3E%3Ccircle class='st3' cx='30' cy='9' r='1'/%3E%3Ccircle class='st3' cx='25' cy='15' r='1'/%3E%3Ccircle class='st3' cx='21' cy='45' r='2'/%3E%3Ccircle class='st3' cx='42' cy='45' r='1'/%3E%3C/svg%3E");
+            background-position: 0px 0px;
+            animation: animatedBackground 15s linear infinite;
+        }
+        
+        .holiday-title {
+            color: red;
+            text-shadow:
+            -2px 3px 0 green,
+            2px 3px 0 green,
+            2px -3px 0 green,
+            -2px -3px 0 green;
+        }
+        
+        @keyframes animatedBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0px 40vh;
+            }
+        }
+    }
+}

@@ -108,10 +108,10 @@ const Header = () => {
 
     return (
         <Row style={{ height: '15%' }} className='nintendo-switch-header'>
-            <Col xs={3}>
+            <Col xs={5} lg={4} xl={3}>
                 <Avatars />
             </Col>
-            <Col xs={5} />
+            <Col xs={3} lg={4} xl={5} />
             <Col xs={4} className='nintendo-switch-header-settings'>
                 <Container fluid>
                     <Row>

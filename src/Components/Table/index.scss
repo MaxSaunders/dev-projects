@@ -262,8 +262,16 @@
         }
 
         .close-settings-button {
+            border-radius: 4px;
             background-color: dodgerblue;
             color: white;
+            margin-top: 10px;
+            padding: 10px 5px;
+            border: 0;
+
+            &:hover {
+                filter: brightness(75%);
+            }
         }
     }
 }

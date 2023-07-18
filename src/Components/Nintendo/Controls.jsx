@@ -65,8 +65,8 @@ const Controls = () => {
 
     return (
         <Row style={{ height: '19%' }} className='nintendo-controls-bar d-flex align-items-center'>
-            <Col xs={0} md={1} lg={2} xl={3} />
-            <Col xs={12} md={10} lg={8} xl={6} className='d-inline-flex nintendo-options-bar'>
+            <Col xs={0} md={1} lg={1} xl={3} />
+            <Col xs={12} md={10} lg={10} xl={6} className='d-inline-flex nintendo-options-bar'>
                 <div className='nintendo-option-circle text-danger'
                     onClick={_setShowMessage}
                 >
@@ -92,7 +92,7 @@ const Controls = () => {
                     <FaPowerOff size='40px' />
                 </div>
             </Col >
-            <Col xs={0} md={1} lg={2} xl={3} />
+            <Col xs={0} md={1} lg={1} xl={3} />
         </Row >
     )
 }

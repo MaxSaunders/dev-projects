@@ -58,7 +58,7 @@ const getDashboardData = () => new Promise((resolve) => {
                 salesPeople: getArrayOfValues(getSalesPerson, 5, 5),
             }
         )
-    }, [1])
+    }, 1)
     // }, [3000])
 })
 
