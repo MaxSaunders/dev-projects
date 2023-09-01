@@ -1,4 +1,4 @@
-import { BsNintendoSwitch, BsFillCalendar2EventFill, BsCalculatorFill, BiSolidDashboard } from 'react-icons/bs'
+import { BsNintendoSwitch, BsCalculatorFill, BiSolidDashboard } from 'react-icons/bs'
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi'
 import { TiWeatherPartlySunny } from 'react-icons/ti'
 import { RiChatQuoteLine } from 'react-icons/ri'
@@ -8,7 +8,6 @@ import { PiTable } from 'react-icons/pi'
 import RandomTeamGen from './RandomTeamGen'
 import Nintendo from './Nintendo'
 import Pokemon from './PokemonV1'
-import Holidays from './Holidays'
 import AgeCalc from './AgeCalc'
 import Weather from './Weather'
 import Quotes from './Quotes'
@@ -23,6 +22,5 @@ export const projects = [
     { label: 'Weather', path: 'weather', Icon: TiWeatherPartlySunny, component: Weather },
     { label: 'Quote of the Day', path: 'quote', Icon: RiChatQuoteLine, component: Quotes },
     { label: 'Table Demo', path: 'table', Icon: PiTable, component: Table },
-    { label: 'Holiday Calendar', path: 'holidays', Icon: BsFillCalendar2EventFill, component: Holidays },
     { label: 'Age Calc', path: 'ageCalc', Icon: BsCalculatorFill, component: AgeCalc },
 ]
