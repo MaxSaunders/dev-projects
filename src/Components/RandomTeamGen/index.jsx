@@ -38,22 +38,41 @@ const shuffleEntries = (entries = [], numberOfGroups = 2) => {
 
 const RandomTeamGen = () => {
     const [input, setInput] = useState('')
+    const [specialCheck, setSpecialCheck] = useState(false)
+    const [error, setError] = useState('')
     const [entries, setEntries] = useState([])
     const [numGroups, setNumGroups] = useState(2)
     const [teams, setTeams] = useState([])
     const [showTextArea, setShowTextArea] = useState(false)
 
     const addEntry = useCallback(() => {
-        if (input && !entries.includes(input)) {
-            if (showTextArea) {
-                setEntries(i => [...i, ...input.trim(' ').split(',')])
-                setInput('')
-            } else {
-                setEntries(i => [...i, input])
-                setInput('')
-            }
+        // if (input && !entries.includes(input)) {
+        //     if (showTextArea) {
+        //         setEntries(i => [...i, ...input.trim(' ').split(',')])
+        //         setInput('')
+        //     } else {
+        //         setEntries(i => [...i, input])
+        //         setInput('')
+        //     }
+        if (!input) {
+            setError('Invalid Entry')
+            return
         }
-    }, [entries, input, showTextArea])
+        if (entries.filter(i => i.name === input).length) {
+            // if (entries.includes(input)) {
+            setError('Entry Already Exists')
+            return
+        }
+        if (showTextArea) {
+            setEntries(i => [...i, ...input.trim(' ').split(',').map(name => ({ name, special: false }))])
+            setInput('')
+            setSpecialCheck(false)
+        } else {
+            setEntries(i => [...i, ({ name: input, special: specialCheck })])
+            setInput('')
+            setSpecialCheck(false)
+        }
+    }, [entries, input, showTextArea, specialCheck])
 
     const removeEntry = useCallback(index => {
         setEntries(prev =>
@@ -83,12 +102,12 @@ const RandomTeamGen = () => {
                 <Row className='my-5'>
                     <Col xs={12} md={6} className='entry-label-wrapper'>
                         <Row>
-                            <Col xs={4} className='entry-label-col'>
+                            <Col xs={3} className='entry-label-col'>
                                 <span className='entry-label'>
                                     Add Name: &nbsp;
                                 </span>
                             </Col>
-                            <Col xs={8}>
+                            <Col xs={7}>
                                 {showTextArea ?
                                     <textarea
                                         onKeyDown={submitEnterKey}
@@ -108,6 +127,14 @@ const RandomTeamGen = () => {
                                         onChange={e => setInput(e.target.value.toUpperCase())}
                                     />
                                 }
+                            </Col>
+                            <Col xs={2}>
+                                <label className='checkbox-container'>
+                                    <span>
+                                        Special
+                                    </span>
+                                    <input checked={specialCheck} onChange={() => setSpecialCheck(i => !i)} type='checkbox' />
+                                </label>
                             </Col>
                         </Row>
                         <Row>
@@ -154,15 +181,15 @@ const RandomTeamGen = () => {
                     <Col xs={0} md={3} />
                 </Row>
                 <Row className='entries-row-container'>
-                    {entries.map((e, entryIndex) =>
-                        <Col className='my-2' xs={12} md={6} lg={4} key={e}>
+                    {entries.map(({ name, special }, entryIndex) =>
+                        <Col className='my-2' xs={12} md={6} lg={4} key={name}>
                             <div>
-                                <Card className={`entry-card border-4 border-${bsColors[entryIndex % bsColors.length]}`}>
-                                    <Container fluid className='px-4'>
+                                <Card className={`entry-card border-4 border-${bsColors[entryIndex % bsColors.length]} special-${special}`}>
+                                    <Container fluid className='other-class px-4'>
                                         <Row>
                                             <Col xs={10}>
                                                 <div className='entry-text'>
-                                                    {e}
+                                                    {name}
                                                 </div>
                                             </Col>
                                             <Col xs={2}>
@@ -172,6 +199,7 @@ const RandomTeamGen = () => {
                                             </Col>
                                         </Row>
                                     </Container>
+                                    <div className='this-class' />
                                 </Card>
                             </div>
                         </Col>

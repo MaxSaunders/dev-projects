@@ -42,9 +42,9 @@ const SatisfactionGraph = () => {
                 colors={['#795ee8', '#3b14d3']}
                 percent={satAvg / 5}
                 formatTextValue={v => `${v.toFixed(1)}%`}
-            // arcWidth={0.3} 
-            //   arcPadding={0.1} 
-            //   cornerRadius={3} 
+            // arcWidth={0.3}
+            //   arcPadding={0.1}
+            //   cornerRadius={3}
             // marginInPercent
             />
             {`Across ${numberOfProjects} customers`}

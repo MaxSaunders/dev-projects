@@ -3,6 +3,7 @@
     color: white;
 
     .agent-carousel-row {
+        display: flex;
         overflow: hidden;
     }
 
@@ -34,6 +35,9 @@
     }
 
     .agent-task-col{
+        background-color: green;
+        width: 33%;
+
         &.sliding-in-left{
             animation: slideLeft .3s;
         }

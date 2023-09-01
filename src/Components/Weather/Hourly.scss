@@ -1,8 +1,32 @@
 .simple-bar-container {
-    border-top: 3px solid lightgray;
     border-radius: 0 0 10px 10px;
-    overflow: hidden;
+    overflow-y: scroll;
     max-height: 350px;
+
+    scrollbar-width: normal;
+    scrollbar-color: #777 #555;
+
+    &::-webkit-scrollbar {
+        width: .6vw;
+        min-width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #7775;
+        border-radius: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #777;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: #5555;
+    }
+
+    &::-webkit-scrollbar-track:hover {
+        background-color: #b5b5b5;
+    }
 
     .hourly-forecast-container {
         max-height: 350px;

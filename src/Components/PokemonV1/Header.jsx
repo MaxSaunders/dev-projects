@@ -73,7 +73,7 @@ export const LogoHeader = () => {
     )
 }
 
-const Header = ({ resetGame, correct, streak = 0, exitGame, difficulty = 'EASY' }) => {
+const Header = ({ resetGame, correct, streak = 0, exitGame, difficulty = 'EASY', generationArray = [] }) => {
     const { Modal, buttonRef } = UseConfirmModal(exitGame, 'Do you want to exit the game?')
     return (
         <>
@@ -91,17 +91,24 @@ const Header = ({ resetGame, correct, streak = 0, exitGame, difficulty = 'EASY' 
             <Col xs={{ span: 12, order: 3 }} md={{ span: 6, order: 2 }}
                 className='d-flex align-items-center justify-content-center'
             >
-                <Row>
-                    <Col className='streak-counter'>
-                        <span className='me-2'>
-                            {`STREAK: `}
-                        </span>
-                        <span>
-                            {streak}
-                            {difficulty === 'HARD' ? '(H)' : ''}
-                        </span>
-                    </Col>
-                </Row>
+                <Container>
+                    <Row className='streak-counter'>
+                        <Col>
+                            <span className='me-2'>
+                                {`STREAK: `}
+                            </span>
+                            <span>
+                                {streak}
+                                {difficulty === 'HARD' ? '(H)' : '(E)'}
+                            </span>
+                        </Col>
+                        <Col>
+                            <span>
+                                {`Gen: [${generationArray[0]}, ${generationArray[1]}]`}
+                            </span>
+                        </Col>
+                    </Row>
+                </Container>
             </Col>
             <Col xs={{ span: 6, order: 2 }} sm={{ span: 6, order: 2 }} md={{ span: 3, order: 3 }}
                 className='my-1 d-flex justify-content-center align-items-center'
@@ -119,7 +126,8 @@ Header.propTypes = {
     resetGame: PropTypes.func,
     correct: PropTypes.bool,
     streak: PropTypes.number,
-    difficulty: PropTypes.string
+    difficulty: PropTypes.string,
+    generationArray: PropTypes.array
 }
 
 export default Header

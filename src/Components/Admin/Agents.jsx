@@ -148,12 +148,14 @@ const Agents = () => {
     }, [slide])
 
     const renderedSalesPeople = useMemo(() => {
-        const arrCopy = [...salesPeople, ...salesPeople]
+        // const arrCopy = [...salesPeople, ...salesPeople]
 
-        return arrCopy.slice(inViewIndex, inViewIndex + NUM_OF_AGENTS_DISPLAYED)
-        // only returns a shalow copy not sure if this will work
-        // return arrCopy.splice(inViewIndex)
-    }, [inViewIndex, salesPeople])
+        // return arrCopy.slice(inViewIndex, inViewIndex + NUM_OF_AGENTS_DISPLAYED)
+        // // only returns a shalow copy not sure if this will work
+        // // return arrCopy.splice(inViewIndex)
+        return [...salesPeople]
+    }, [salesPeople])
+    // }, [inViewIndex, salesPeople])
 
     if (!salesPeople?.length) {
         return (
@@ -167,6 +169,14 @@ const Agents = () => {
                 <span className={`agent-cursor agent-cursor-left disable-${inViewIndex <= 0}`} onClick={navLeft}>
                     <BiSolidRightArrow />
                 </span>
+                {/* <div style={{ height: 'auto' }} className='agent-carousel-row'>
+                    {renderedSalesPeople?.map((sp, index) =>
+                        <div className='agent-task-col'>
+                            Hello
+                        </div>
+
+                    )}
+                </div> */}
                 <Row style={{ height: 'auto' }} className='agent-carousel-row'>
                     {renderedSalesPeople?.map((sp, index) =>
                         <AgentCard key={sp.name} {...sp} slide={slide} index={index} />
