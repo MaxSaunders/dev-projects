@@ -25,6 +25,10 @@
         font-size: 20px;
     }
 
+    .generation-input {
+        text-align: center;
+    }
+
     .pokemon-game-header {
         .help-circle-icon {
             min-width: 30px;
@@ -48,6 +52,11 @@
             font-weight: 600;
             font-size: 40px;
             width: 100%;
+            transition: filter .5s;
+
+            &.active {
+                filter: brightness(50%);
+            }
         }
     }
 
@@ -86,6 +95,7 @@
             font-size: 20px;
             font-weight: 700;
             color: purple;
+            text-wrap: balance;
         }
 
         .pokemon-name {
@@ -107,6 +117,7 @@
             font-size: 30px;
             font-weight: 700;
             color: purple;
+            text-wrap: balance;
         }
 
         .pokemon-name {

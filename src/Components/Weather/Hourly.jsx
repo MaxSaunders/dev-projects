@@ -1,8 +1,6 @@
 import { useMemo } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import SimpleBarReact from 'simplebar-react'
 import PropTypes from 'prop-types'
-import 'simplebar-react/dist/simplebar.min.css'
 
 import getIcon from './getIcon'
 import './Hourly.scss'
@@ -57,7 +55,7 @@ HourlyRow.propTypes = {
 }
 
 const HourlyRender = ({ hourly }) =>
-    <SimpleBarReact className='simple-bar-container'>
+    <div className='simple-bar-container'>
         <Container fluid className='hourly-forecast-container'>
             <Row>
                 <Col className='px-0'>
@@ -67,7 +65,7 @@ const HourlyRender = ({ hourly }) =>
                 </Col>
             </Row>
         </Container>
-    </SimpleBarReact>
+    </div >
 
 HourlyRender.propTypes = {
     hourly: PropTypes.array

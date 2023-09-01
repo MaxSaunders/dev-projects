@@ -1,16 +1,29 @@
 /* eslint-disable react/prop-types */
 import { Button, Col, Container, Row } from 'react-bootstrap'
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useMemo } from 'react'
 import { ImSpinner5 } from 'react-icons/im'
 
 import { getRandomNumbers } from '../../utils/getRandom'
 import Header, { LogoHeader } from './Header'
+import SelectField from './../SelectField'
 import useGetPokemon from './useGetPokemon'
 import Options from './Options'
 import Hints from './Hints'
 import './index.scss'
 
-const PokemonGame = ({ difficulty, exitGame }) => {
+const generations = {
+    1: [1, 151],
+    2: [152, 251],
+    3: [252, 386],
+    4: [387, 493],
+    5: [494, 649],
+    6: [650, 721],
+    7: [722, 809],
+    8: [810, 905],
+    9: [906, 1010],
+}
+
+const PokemonGame = ({ difficulty, exitGame, generationArray }) => {
     const { getPokemon } = useGetPokemon()
     const [pokemon, setPokemon] = useState({})
     const [pokemonNameArray, setPokemonNameArray] = useState([])
@@ -44,8 +57,8 @@ const PokemonGame = ({ difficulty, exitGame }) => {
         setGuessed(false)
         setHidden(true)
         setPokemonNameArray([])
-        const pokeCount = 1010
-        const randomNumbers = getRandomNumbers(1, pokeCount, 4)
+
+        const randomNumbers = getRandomNumbers(generations[generationArray[0]][0], generations[generationArray[1]][1], 4)
 
         if (difficulty == 'EASY') {
             fetchRandomPokemonName(randomNumbers.splice(1, 3))
@@ -59,7 +72,7 @@ const PokemonGame = ({ difficulty, exitGame }) => {
                 fetchPokemon()
             }
         }).then(() => setLoading(false))
-    }, [difficulty, fetchRandomPokemonName, getPokemon])
+    }, [difficulty, fetchRandomPokemonName, generationArray, getPokemon])
 
     // add generation to this info
     const { name, sprites } = pokemon || {}
@@ -125,7 +138,7 @@ const PokemonGame = ({ difficulty, exitGame }) => {
     return (
         <Container className='pokemon-game'>
             <Row>
-                <Header difficulty={difficulty} exitGame={exitGame} correct={correct} resetGame={resetGame} streak={streak} fetchPokemon={fetchPokemon} />
+                <Header difficulty={difficulty} exitGame={exitGame} correct={correct} resetGame={resetGame} streak={streak} fetchPokemon={fetchPokemon} generationArray={generationArray} />
             </Row>
             <Row>
                 <Col xs={12}>
@@ -164,9 +177,31 @@ const PokemonGame = ({ difficulty, exitGame }) => {
 }
 
 const Pokemon = () => {
+    const [start, setStart] = useState(false)
     const [difficulty, setDifficulty] = useState('')
+    const [generationArray, setGenerationArray] = useState([1, 9])
 
-    if (!difficulty) {
+    const optionsFrom = useMemo(() => {
+        let tempArray = []
+        let i = 1
+        while (i <= generationArray[1]) {
+            tempArray.push({ label: i, value: i })
+            i++
+        }
+        return tempArray
+    }, [generationArray])
+
+    const optionsTo = useMemo(() => {
+        let tempArray = []
+        let i = generationArray[0]
+        while (i <= 9) {
+            tempArray.push({ label: i, value: i })
+            i++
+        }
+        return tempArray
+    }, [generationArray])
+
+    if (!start) {
         return (
             <div className='pt-5 pokemon-game-wrapper'>
                 <Container className='pokemon-menu pokemon-game'>
@@ -175,6 +210,24 @@ const Pokemon = () => {
                             <LogoHeader />
                         </Col>
                     </Row>
+                    <Row className='mt-4'>
+                        <Col>
+                            <div className='fs-4 fw-bold'>
+                                Select the generations you which to guess from
+                            </div>
+                            {!generationArray.length ? <div className='text-danger'>* Please select a generation(s) *</div> : <></>}
+                        </Col>
+                    </Row>
+                    <Row className='my-4 fs-4 fw-bold'>
+                        <Col xs={0} lg={3} />
+                        <Col xs={6} lg={3}>
+                            <SelectField labelClassName='w-100' className='w-100 text-center' onChange={e => setGenerationArray(i => [e, i[1]])} value={generationArray[0]} options={optionsFrom} label='From Gen' />
+                        </Col>
+                        <Col xs={6} lg={3}>
+                            <SelectField labelClassName='w-100' className='w-100 text-center' onChange={e => setGenerationArray(i => [i[0], e])} value={generationArray[1]} options={optionsTo} label='To Gen' />
+                        </Col>
+                        <Col xs={0} lg={3} />
+                    </Row>
                     <Row>
                         <Col>
                             <h2 className='text-dark mb-0 mt-4 fw-bold'>
@@ -182,26 +235,37 @@ const Pokemon = () => {
                             </h2>
                         </Col>
                     </Row>
-                    <Row className='mt-5'>
+                    <Row className='mt-4'>
                         <Col xs={12} md={6}>
-                            <Button className='menu-btn mb-4' onClick={() => setDifficulty('EASY')}>
+                            <Button className={`${difficulty === 'EASY' ? 'active' : ''} menu-btn mb-4`} onClick={() => setDifficulty('EASY')}>
                                 EASY
                             </Button>
                         </Col>
                         <Col xs={12} md={6}>
-                            <Button className='menu-btn btn-danger' onClick={() => setDifficulty('HARD')}>
+                            <Button className={`${difficulty === 'HARD' ? 'active' : ''} menu-btn btn-danger mb-4`} onClick={() => setDifficulty('HARD')}>
                                 HARD
                             </Button>
                         </Col>
                     </Row>
-                </Container>
-            </div>
+                    <Row>
+                        <Col>
+                            <Button onClick={() => setStart(true)} disabled={!difficulty || !generationArray.length} className='menu-btn'>
+                                Start {difficulty}
+                            </Button>
+                        </Col>
+                    </Row>
+                </Container >
+            </div >
         )
     }
 
     return (
         <div className='pt-5 pokemon-game-wrapper'>
-            <PokemonGame difficulty={difficulty} exitGame={() => setDifficulty('')} />
+            <PokemonGame
+                generationArray={generationArray}
+                difficulty={difficulty}
+                exitGame={() => setStart(false)}
+            />
         </div>
     )
 }
