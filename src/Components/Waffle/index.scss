@@ -1,0 +1,161 @@
+.waffle-title {
+    font-size: 6vw;
+    font-family: cursive;
+    margin-top: 1vw;
+}
+
+$offset : -90px;
+$count : 40;
+$duration : .5;
+
+@keyframes wave {
+    0% {
+        transform : translateY(0);
+        color: white;
+    }
+    50% {
+        transform : translateY( $offset );
+    }
+    100% {
+        transform : translateY(0);
+        color: white;
+    }
+}
+
+@for $i from 0 to $count {
+    .waffle-puzzle :nth-child( #{$count}n + #{$i} ) {
+        animation-delay : #{calc(($i + 1) / 20)}s;
+    }
+}
+
+.waffle-wrapper {
+    display: flex;
+    justify-content: center;
+
+    &.game-over-true {
+        transition: filter 1s ease;
+        filter: grayscale(1);
+
+        .puzzle-square {
+            animation-duration: #{$duration}s;
+            animation-name: wave;
+            animation-iteration-count: 1;
+            animation-direction: alternate;
+        }
+    }
+
+    .waffle-puzzle {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        column-gap: 1em;
+        row-gap: 1em;
+        margin-top: 3rem;
+        
+        @media (max-width: 767px) {
+            width: 80%;
+        }
+        
+        @media (min-width: 768px) {
+            width: 60%;
+        }
+        
+        @media (min-width: 1092px) {
+            width: 40%;
+        }
+        
+        @media (min-width: 1792px) {
+            width: 30%;
+        }
+
+        .puzzle-square {
+            background: transparent;
+            aspect-ratio: 1/1;
+            
+            &:not(.blank) {
+                .puzzle-square-div {
+                    -ms-user-select: none;
+                    -moz-user-select: none;
+                    -webkit-user-select: none;
+                    -webkit-touch-callout: none;
+                    -khtml-user-select: none;
+                    user-select: none;
+
+                    @media (max-width: 767px) {
+                        font-size: 10vw;
+                    }
+                    
+                    @media (min-width: 768px) {
+                        font-size: 8vw;
+                    }
+                    
+                    @media (min-width: 1092px) {
+                        font-size: 5vw;
+                    }
+                    
+                    @media (min-width: 1792px) {
+                        font-size: 4vw;
+                    }
+
+                    height: 100%;
+                    aspect-ratio: 1/1;
+                    border-radius: 10%;
+                    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    opacity: .90;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                    font-family: "Nunito", sans-serif;
+                    font-weight: 600;
+                    transition: transform .2s, color .2s, background-color .2s;
+
+                    // 
+                    // position: relative;
+                    // cursor: move;
+                    // pointer-events: all;
+                    // 
+
+                    &.moving {
+                        opacity: 0.7;
+                        box-shadow: inset 7px 7px 20px grey-dark, inset -7px -7px 20px grey-light;
+                    }
+
+                    &.correct-true {
+                        background-color: #6fb05c;
+                        color: white;
+                    }
+                    
+                    &.correct-maybe {
+                        background-color: #e9ba3a;
+                        color: white;
+                    }
+
+                    &.correct-false {
+                        cursor: grab;
+                        background-color: grey;
+                        color: black;
+                    }
+
+                    &:not(.correct-true) {
+                        &.dragOver-true {
+                            transform: scale(.95);
+                            box-shadow:
+                                0 26px 20px 0 rgba(19, 34, 39, 0.2);
+                        }
+                    }
+
+                    &.dragging-true {
+                        transform: scale(2.5);
+                    }
+                }
+            }
+
+            .letter-wrapper {
+                // display: flex;
+                // align-items: center;
+                // justify-content: center;
+            }
+        }
+    }
+}
