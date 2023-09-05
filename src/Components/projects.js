@@ -1,5 +1,4 @@
-import { BsNintendoSwitch } from 'react-icons/bs'
-// import { BsNintendoSwitch, BsCalculatorFill, BiSolidDashboard } from 'react-icons/bs'
+import { BsNintendoSwitch, BsCalculatorFill, BsGrid3X3 } from 'react-icons/bs'
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi'
 import { TiWeatherPartlySunny } from 'react-icons/ti'
 import { RiChatQuoteLine, RiDashboardFill } from 'react-icons/ri'
@@ -9,9 +8,10 @@ import { PiTable } from 'react-icons/pi'
 import RandomTeamGen from './RandomTeamGen'
 import Nintendo from './Nintendo'
 import Pokemon from './PokemonV1'
-// import AgeCalc from './AgeCalc'
+import AgeCalc from './AgeCalc'
 import Weather from './Weather'
 import Quotes from './Quotes'
+import Waffle from './Waffle'
 import Table from './Table'
 import Admin from './Admin'
 
@@ -23,5 +23,6 @@ export const projects = [
     { label: 'Weather', path: 'weather', Icon: TiWeatherPartlySunny, component: Weather },
     { label: 'Quote of the Day', path: 'quote', Icon: RiChatQuoteLine, component: Quotes },
     { label: 'Table Demo', path: 'table', Icon: PiTable, component: Table },
-    // { label: 'Age Calc', path: 'ageCalc', Icon: BsCalculatorFill, component: AgeCalc },
+    { label: 'Age Calc', path: 'ageCalc', Icon: BsCalculatorFill, component: AgeCalc },
+    { label: 'Waffle', path: 'waffle', Icon: BsGrid3X3, component: Waffle },
 ]
