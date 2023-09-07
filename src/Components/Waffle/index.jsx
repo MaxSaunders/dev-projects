@@ -66,7 +66,7 @@ const randomizeLetters = (lettersArray) => {
 
 const BlankSquare = () => <span className='puzzle-square blank' />
 
-const PuzzleSquare = ({ state, dragging, dragOver, letterArray, handleDrag, handleDragEnter, handleDrop, index, words, gameOver }) => {
+const PuzzleSquare = ({ state, dragging, dragOver, letterArray, clickSelected, handleDrag, handleDragEnter, handleDrop, handleClicks, index, words, gameOver }) => {
     const letter = useMemo(() => state[index], [index, state])
     const wordKeyArray = useMemo(() => KEY[index], [index])
     const isDragOver = useMemo(() => dragOver === index, [dragOver, index])
@@ -89,7 +89,9 @@ const PuzzleSquare = ({ state, dragging, dragOver, letterArray, handleDrag, hand
         return 'false'
     }, [index, wordKeyArray, letter, letterArray, state, words])
 
-    const className = useMemo(() => `puzzle-square-div square-${index} dragging-${dragging} correct-${isCorrect} dragOver-${isDragOver}`, [dragging, index, isCorrect, isDragOver])
+    const className = useMemo(() =>
+        `puzzle-square-div square-${index} dragging-${dragging == index} clicked-${clickSelected == index} correct-${isCorrect} dragOver-${isDragOver}`
+        , [clickSelected, dragging, index, isCorrect, isDragOver])
 
     return (
         <span className={`puzzle-square`}>
@@ -100,6 +102,7 @@ const PuzzleSquare = ({ state, dragging, dragOver, letterArray, handleDrag, hand
                 onDrag={handleDrag(index)}
                 onDragEnter={handleDragEnter(index)}
                 onDragEnd={handleDrop}
+                onClick={() => handleClicks(index)}
             >
                 {(letter).toUpperCase()}
             </div>
@@ -114,10 +117,12 @@ PuzzleSquare.propTypes = {
     index: PropTypes.number,
     dragging: PropTypes.number,
     dragOver: PropTypes.number,
+    clickSelected: PropTypes.number,
     handleDrag: PropTypes.func,
     handleDragEnter: PropTypes.func,
     handleDragLeave: PropTypes.func,
     handleDrop: PropTypes.func,
+    handleClicks: PropTypes.func,
     words: PropTypes.arrayOf(PropTypes.string),
 }
 
@@ -139,6 +144,8 @@ const animateSwitch = (aIndex, bIndex) => {
 }
 
 const Waffle = () => {
+    const [clickSelected, setClickSelected] = useState(-1)
+
     const [words, setWords] = useState([])
     const [state, setState] = useState([])
     const [loading, setLoading] = useState(true)
@@ -237,11 +244,23 @@ const Waffle = () => {
         })
     }, [])
 
+    const resetClick = useCallback(() => {
+        setClickSelected(-1)
+    }, [])
+
+    const resetDrag = useCallback(() => {
+        setDragging(-1)
+        setDragOver(-1)
+    }, [])
+
+    const resetBoth = useCallback(() => {
+        resetClick()
+        resetDrag()
+    }, [resetClick, resetDrag])
+
     const handleDrop = useCallback(() => {
-        // if one is correct cancel switch
         if (gameOver) {
-            setDragging(-1)
-            setDragOver(-1)
+            resetDrag()
             return
         }
 
@@ -249,15 +268,16 @@ const Waffle = () => {
             letterArray[dragOver] === state[dragOver] ||
             letterArray[dragging] === state[dragging]
         ) {
-            setDragging(-1)
-            setDragOver(-1)
+            // if one is correct cancel switch
+            resetDrag()
             return
         }
 
         if (state[dragOver] === state[dragging]) {
+            // Switching matching letters
+            // Doesnt add to count
             animateSwitch(dragOver, dragging)
-            setDragging(-1)
-            setDragOver(-1)
+            resetBoth()
             return
         }
 
@@ -265,8 +285,32 @@ const Waffle = () => {
             animateSwitch(dragOver, dragging)
             switchFunc(dragOver, dragging)
             setMoveCount(i => i + 1)
+            resetBoth()
         }
-    }, [dragOver, dragging, gameOver, letterArray, state, switchFunc])
+    }, [gameOver, letterArray, dragOver, state, dragging, resetDrag, resetBoth, switchFunc])
+
+    const handleClicks = useCallback((clickedIndex) => {
+        if (gameOver || letterArray[clickedIndex] === state[clickedIndex]) {
+            // if one is correct or game is over: cancel switch
+            return
+        }
+        if (clickSelected == clickedIndex) {
+            // Deselect choice
+            resetClick()
+            return
+        }
+        if (clickSelected >= 0) {
+            // Switch them
+            const temp = clickSelected
+            animateSwitch(temp, clickedIndex)
+            switchFunc(temp, clickedIndex)
+            setMoveCount(i => i + 1)
+            resetBoth()
+        } else {
+            // Select first square
+            setClickSelected(clickedIndex)
+        }
+    }, [gameOver, letterArray, state, clickSelected, resetClick, switchFunc, resetBoth])
 
     const props = useMemo(() => ({
         state,
@@ -275,11 +319,13 @@ const Waffle = () => {
         dragging,
         words,
         gameOver,
+        clickSelected,
         handleDrag,
         handleDragEnter,
         handleDragLeave,
-        handleDrop
-    }), [state, letterArray, dragOver, dragging, words, gameOver, handleDrag, handleDragEnter, handleDragLeave, handleDrop])
+        handleDrop,
+        handleClicks
+    }), [state, letterArray, dragOver, dragging, words, gameOver, clickSelected, handleDrag, handleDragEnter, handleDragLeave, handleDrop, handleClicks])
 
     if (loading || !words.length) {
         return (

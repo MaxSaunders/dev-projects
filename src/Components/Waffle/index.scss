@@ -146,7 +146,14 @@ $duration : .5;
                     }
 
                     &.dragging-true {
-                        transform: scale(2.5);
+                        transform: scale(.95);
+                    }
+                    
+                    &.clicked-true {
+                        transform: scale(.95);
+                        border: 5px solid rgba(0, 191, 255, 0.83);
+                        box-shadow:
+                                0 26px 20px 0 rgba(23, 141, 180, 0.2);
                     }
                 }
             }

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useCallback } from "react"
-import { getRandomNumbers } from "../../utils/getRandom"
+import { getRandomNumbers } from "../../../utils/getRandom"
 
 const POKE_API_URL = 'https://pokeapi.co/api/v2'
 

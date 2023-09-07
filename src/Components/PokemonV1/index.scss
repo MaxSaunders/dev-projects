@@ -30,6 +30,18 @@
     }
 
     .pokemon-game-header {
+        .leader-board-link {
+            color: black;
+
+            svg {
+                &:hover {
+                    transform: scale(1.1);
+                    color: purple;
+                    cursor: pointer;
+                }
+            }
+        }
+
         .help-circle-icon {
             min-width: 30px;
             max-width: 50px;
@@ -134,10 +146,14 @@
         }
     }
 
-    .game-option {
+    .game-option, .name-input {
         min-width: 50%;
         font-size: 20px;
         font-weight: 500;
+    }
+
+    .name-input {
+        border: 2px solid black;
     }
 
     .pokemon-suggestions {
