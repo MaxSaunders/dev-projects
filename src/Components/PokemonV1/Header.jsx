@@ -94,7 +94,7 @@ const Header = ({ resetGame, correct, streak = 0, exitGame, difficulty = 'EASY',
             mode: difficulty,
             gen: generationArray
         })
-    }, [])
+    }, [difficulty, generationArray, playerName, putScore, streak])
 
     const { Modal, buttonRef } = UseConfirmModal(exitGame, 'Do you want to exit the game?')
     return (
