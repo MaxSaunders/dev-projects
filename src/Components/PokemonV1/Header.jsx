@@ -89,7 +89,7 @@ const Header = ({ resetGame, correct, streak = 0, exitGame, difficulty = 'EASY',
     const saveScore = useCallback(() => {
         setScoreSaved(true)
         putScore({
-            name: 'Max',
+            name: playerName,
             score: streak,
             mode: difficulty,
             gen: generationArray
