@@ -6,11 +6,27 @@ import {
   Switch,
   useLocation
 } from 'react-router-dom'
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
+import { projects } from './Components/projects'
 import PageHome from './Components/PageHome'
 import Navbar from './Components/NavBar'
 import './App.scss'
-import { projects } from './Components/projects'
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
+};
+
+// // Initialize Firebase
+export const firebaseApp = initializeApp(firebaseConfig)
+export const analytics = getAnalytics(firebaseApp)
 
 const App = () => {
   const location = useLocation()

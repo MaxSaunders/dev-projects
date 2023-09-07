@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa"
 import { DropdownList } from "react-widgets"
 import PropTypes from 'prop-types'
 
-import pokemon from './pokemon.json'
+import pokemon from './helpers/pokemon.json'
 
 const Options = ({ guessed, correctAnswer = '', pokemonNameArray = [], fetchPokemon, guess, difficulty = 'EASY', setShowHint = () => false }) => {
     const suggestions = useMemo(() => {
