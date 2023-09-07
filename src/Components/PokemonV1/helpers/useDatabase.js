@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { getDatabase, onValue, ref, push } from "firebase/database";
 
-import { firebaseApp } from "../../../App";
+import { firebaseApp } from "../../../appConfig";
 
 const useDataBase = () => {
     const db = getDatabase(firebaseApp)
@@ -18,7 +18,7 @@ const useDataBase = () => {
                 })
             }
         })
-    }, [])
+    }, [db])
 
     const [putLoading, setPutLoading] = useState(false)
     const putScore = useCallback(newScore => {
@@ -28,7 +28,7 @@ const useDataBase = () => {
         push(scoresRef, newScore).then(() => {
             setPutLoading(false)
         })
-    }, [])
+    }, [db])
 
     return {
         getScoresApi: [getScores, scores],
