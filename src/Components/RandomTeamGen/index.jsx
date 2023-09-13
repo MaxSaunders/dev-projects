@@ -59,7 +59,6 @@ const RandomTeamGen = () => {
             return
         }
         if (entries.filter(i => i.name === input).length) {
-            // if (entries.includes(input)) {
             setError('Entry Already Exists')
             return
         }
@@ -99,6 +98,13 @@ const RandomTeamGen = () => {
     return (
         <div>
             <Container className='random-team-gen-wrapper'>
+                <Row>
+                    <Col>
+                        <div className='text-danger'>
+                            {error}
+                        </div>
+                    </Col>
+                </Row>
                 <Row className='my-5'>
                     <Col xs={12} md={6} className='entry-label-wrapper'>
                         <Row>
@@ -222,9 +228,9 @@ const RandomTeamGen = () => {
                             lg={12 / Math.min(Math.max(teams.length, 1), 4)}
                         >
                             <Card className={`team-card bg-${bsColors[teamIndex % bsColors.length]}`}>
-                                {team.map(entry =>
-                                    <div key={entry} className='team-entry my-2'>
-                                        {entry}
+                                {team.map(({ name, special }) =>
+                                    <div key={name} className={`team-entry my-2 special-${special}`}>
+                                        {name}
                                     </div>
                                 )}
                             </Card>
